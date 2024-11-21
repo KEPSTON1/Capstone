@@ -42,4 +42,7 @@
     <string name="login_prompt">Already have an account? <a href="#">Login</a></string>
     <string name="welcome_back">Welcome Back</string>
     <string name="hello_good_people">Hello Good People</string>
+    <string name="hi_name">👋🏻 Hi Name!</string>
+    <string name="kuisioner">Kuisioner</string>
+    <string name="history">History</string>
 </resources>
