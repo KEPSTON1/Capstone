@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.capstone.databinding.FragmentHomeBinding
 import com.example.capstone.ui.history.HistoryActivity
 import com.example.capstone.ui.kuisioner.KuisionerActivity
+import com.example.capstone.ui.maps.MapsActivity
 
 class HomeFragment : Fragment() {
 
@@ -29,6 +30,10 @@ class HomeFragment : Fragment() {
         }
         binding.historyCard.setOnClickListener {
             val intent = Intent(requireContext(), HistoryActivity::class.java)
+            startActivity(intent)
+        }
+        binding.mapsCard.setOnClickListener {
+            val intent = Intent(requireContext(), MapsActivity::class.java)
             startActivity(intent)
         }
 
