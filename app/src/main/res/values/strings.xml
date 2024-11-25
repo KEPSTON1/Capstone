@@ -34,7 +34,7 @@
     <string name="error_loading_data">Error loading data</string>
     <string name="retry">Retry</string>
     <string name="add_location">Add Location</string>
-    <string name="welcoem_to">Welcoem to</string>
+    <string name="welcoem_to">Welcome to</string>
     <string name="mindcare">MindCare</string>
 
     <string name="signup_prompt">Don\'t have an account? <a href="#">Sign Up</a></string>
@@ -45,4 +45,5 @@
     <string name="hi_name">👋🏻 Hi Name!</string>
     <string name="kuisioner">Kuisioner</string>
     <string name="history">History</string>
+    <string name="title_profile">Profile</string>
 </resources>
