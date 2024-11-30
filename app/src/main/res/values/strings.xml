@@ -47,4 +47,9 @@
     <string name="history">History</string>
     <string name="title_profile">Profile</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="gender">Gender</string>
+    <string name="age">Age</string>
 </resources>
