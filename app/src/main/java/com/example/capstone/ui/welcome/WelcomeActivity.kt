@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.capstone.R
 import com.example.capstone.databinding.ActivityWelcomeBinding
 import com.example.capstone.ui.login.LoginActivity
@@ -37,5 +38,7 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         supportActionBar?.hide()
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }

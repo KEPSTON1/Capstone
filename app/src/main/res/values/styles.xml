@@ -7,4 +7,8 @@
         <item name="strokeColor">@color/ink01</item>
     </style>
 
+    <style name="RoundedCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
 </resources>

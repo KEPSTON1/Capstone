@@ -3,7 +3,9 @@ package com.example.capstone
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstone.pref.UserRepository
+import com.example.capstone.ui.article.ArticleViewModel
 import com.example.capstone.ui.login.LoginViewModel
+import com.example.capstone.ui.profile.ProfileViewModel
 import com.example.capstone.ui.register.RegisterViewModel
 
 class LoginViewModelFactory(private val userRepository: UserRepository) :
@@ -23,6 +25,28 @@ class RegisterViewModelFactory(private val userRepository: UserRepository) :
         if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return RegisterViewModel(userRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+
+class ProfileViewModelFactory(private val userRepository: UserRepository) :
+    ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return ProfileViewModel(userRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+
+class ArticleViewModelFactory(private val userRepository: UserRepository) :
+    ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(ArticleViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return ArticleViewModel(userRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
