@@ -3,11 +3,14 @@ package com.example.capstone.pref
 import com.example.capstone.api.ApiService
 import com.example.capstone.api.response.GetArticlesResponse
 import com.example.capstone.api.response.GetProfileResponse
+import com.example.capstone.api.response.LocationResponse
 import com.example.capstone.api.response.LoginResponse
 import com.example.capstone.api.response.RegisterResponse
 
-class UserRepository(private val apiService: ApiService,
-                     private val userPreferences: UserPreferences) {
+class UserRepository(
+    private val apiService: ApiService,
+    private val userPreferences: UserPreferences,
+) {
 
     suspend fun register(
         email: String,
@@ -16,7 +19,7 @@ class UserRepository(private val apiService: ApiService,
         password: String,
         phone: String,
         gender: String,
-        age: Int
+        age: Int,
     ): RegisterResponse {
         return apiService.register(email, firstName, lastName, password, phone, gender, age)
     }
@@ -31,5 +34,10 @@ class UserRepository(private val apiService: ApiService,
 
     suspend fun getArticles(token: String): GetArticlesResponse {
         return apiService.getArticles()
+    }
+
+    suspend fun getNearbyLocations(latitude: Double, longitude: Double, keyword: String): List<LocationResponse> {
+        val response = apiService.getNearbyLocations(latitude, longitude, keyword)
+        return response.toko
     }
 }

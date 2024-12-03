@@ -4,10 +4,12 @@ import com.example.capstone.api.response.GetArticlesResponse
 import com.example.capstone.api.response.GetProfileResponse
 import com.example.capstone.api.response.LoginResponse
 import com.example.capstone.api.response.RegisterResponse
+import com.example.capstone.api.response.StoreResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -20,14 +22,14 @@ interface ApiService {
         @Field("password") password: String,
         @Field("phone") phone: String,
         @Field("gender") gender: String,
-        @Field("age") age: Int
+        @Field("age") age: Int,
     ): RegisterResponse
 
     @FormUrlEncoded
     @POST("login")
     suspend fun login(
         @Field("email") email: String,
-        @Field("password") password: String
+        @Field("password") password: String,
     ): LoginResponse
 
     @GET("profile")
@@ -35,4 +37,11 @@ interface ApiService {
 
     @GET("article")
     suspend fun getArticles(): GetArticlesResponse
+
+    @GET("getStore")
+    suspend fun getNearbyLocations(
+        @Query("latitude") latitude: Double,
+        @Query("longitude") longitude: Double,
+        @Query("keyword") keyword: String
+    ): StoreResponse
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.capstone.pref.UserRepository
 import com.example.capstone.ui.article.ArticleViewModel
 import com.example.capstone.ui.login.LoginViewModel
+import com.example.capstone.ui.maps.MapsViewModel
 import com.example.capstone.ui.profile.ProfileViewModel
 import com.example.capstone.ui.register.RegisterViewModel
 
@@ -47,6 +48,16 @@ class ArticleViewModelFactory(private val userRepository: UserRepository) :
         if (modelClass.isAssignableFrom(ArticleViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return ArticleViewModel(userRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+
+class MapsViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MapsViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
