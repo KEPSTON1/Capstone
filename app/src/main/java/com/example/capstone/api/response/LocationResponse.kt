@@ -12,5 +12,11 @@ data class LocationResponse(
     val jamBuka: String?,
     val jamTutup: String?,
     val nomorHP: String?,
-    val whatsappUrl: String?
+    val whatsappUrl: String?,
+    val lokasi: Lokasi?
+)
+
+data class Lokasi(
+    val latitude: Double,
+    val longitude: Double
 )

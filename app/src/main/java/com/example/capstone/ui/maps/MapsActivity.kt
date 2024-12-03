@@ -22,6 +22,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -39,7 +41,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -52,12 +53,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        // Inisialisasi RecyclerView dengan LayoutManager
         binding.rvLocations.layoutManager = LinearLayoutManager(this)
-        adapter = LocationAdapter(emptyList()) // Inisialisasi adapter dengan data kosong
+        adapter = LocationAdapter(emptyList())
         binding.rvLocations.adapter = adapter
 
-        // Setup SearchView
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -77,7 +76,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         })
 
-        // Mengamati errorMessage dari viewModel
         viewModel.errorMessage.observe(this) { errorMessage ->
             if (errorMessage != null) {
                 Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
@@ -85,28 +83,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
 
-        // Mengamati isLoading dari viewModel
         viewModel.isLoading.observe(this) { isLoading ->
 
         }
 
-        // Mengamati locations dari viewModel
         viewModel.locations.observe(this) { locations ->
             adapter.updateData(locations)
             adapter.notifyDataSetChanged()
+
+            mMap.clear()
+            val builder = LatLngBounds.Builder()
+            for (location in locations) {
+                val latLng = location.lokasi?.let { LatLng(it.latitude, it.longitude) }
+
+                latLng?.let {
+                    mMap.addMarker(
+                        MarkerOptions()
+                            .position(it)
+                            .title(location.nama)
+                    )
+                    builder.include(it)
+                }
+            }
+
+            val bounds = builder.build()
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
         }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Hapus kode yang menampilkan lokasi pengguna
-        // mMap.isMyLocationEnabled = true
-        // fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-        //     // ... (kode untuk menampilkan lokasi pengguna) ...
-        // }
-
-        // Panggil getNearbyLocations dengan keyword default
         viewModel.getNearbyLocations()
     }
 

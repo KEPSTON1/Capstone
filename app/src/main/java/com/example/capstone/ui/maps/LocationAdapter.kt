@@ -20,14 +20,12 @@ class LocationAdapter(private var locations: List<LocationResponse>) :
                     .load(location.fotoUrl)
                     .into(binding.ivLocationPhoto)
             } else {
-                // Tampilkan placeholder image atau sembunyikan ImageView
                 binding.ivLocationPhoto.visibility = View.GONE
             }
 
-            // Penanganan null untuk nama, alamat, dan rating
-            binding.tvLocationName.text = location.nama ?: "-" // Menampilkan "-" jika nama null
-            binding.tvLocationAddress.text = location.alamat ?: "-" // Menampilkan "-" jika alamat null
-            binding.tvLocationRating.text = "Rating: ${location.rating ?: "-" }" // Menampilkan "-" jika rating null
+            binding.tvLocationName.text = location.nama ?: "-"
+            binding.tvLocationAddress.text = location.alamat ?: "-"
+            binding.tvLocationRating.text = "Rating: ${location.rating ?: "-" }"
         }
     }
 
@@ -42,13 +40,13 @@ class LocationAdapter(private var locations: List<LocationResponse>) :
 
     override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
         val location = locations[position]
-        holder.bind(location) // Memanggil fungsi bind() untuk mengikat data ke View Binding
+        holder.bind(location)
     }
 
     override fun getItemCount(): Int = locations.size
 
     fun updateData(newLocations: List<LocationResponse>) {
         locations = newLocations
-        notifyDataSetChanged() // Memberitahu adapter bahwa data telah berubah
+        notifyDataSetChanged()
     }
 }

@@ -27,19 +27,19 @@ class MapsViewModel(private val userRepository: UserRepository) : ViewModel() {
         keyword: String = "mental health di bali"
     ) {
         viewModelScope.launch {
-            _isLoading.value = true // Update _isLoading di main thread
+            _isLoading.value = true
             try {
                 val response = withContext(Dispatchers.IO) {
                     userRepository.getNearbyLocations(latitude, longitude, keyword)
                 }
-                _locations.value = response // Update _locations di main thread
-                _errorMessage.value = null // Update _errorMessage di main thread
+                _locations.value = response
+                _errorMessage.value = null
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    _errorMessage.value = e.message // Update _errorMessage di main thread
+                    _errorMessage.value = e.message
                 }
             } finally {
-                _isLoading.value = false // Update _isLoading di main thread
+                _isLoading.value = false
             }
         }
     }
