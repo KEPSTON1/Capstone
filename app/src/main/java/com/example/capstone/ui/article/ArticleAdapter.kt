@@ -13,10 +13,21 @@ import com.example.capstone.api.response.Article
 class ArticleAdapter(private val articles: List<Article>) :
     RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivArticleImage: ImageView = itemView.findViewById(R.id.iv_article_image)
         val tvArticleTitle: TextView = itemView.findViewById(R.id.tv_article_title)
         val tvArticleDescription: TextView = itemView.findViewById(R.id.tv_article_description)
+
+        init {
+            itemView.setOnClickListener {
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,7 +44,15 @@ class ArticleAdapter(private val articles: List<Article>) :
 
         holder.tvArticleTitle.text = article.title
         holder.tvArticleDescription.text = article.description
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback?.onItemClicked(article)
+        }
     }
 
     override fun getItemCount(): Int = articles.size
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Article)
+    }
 }

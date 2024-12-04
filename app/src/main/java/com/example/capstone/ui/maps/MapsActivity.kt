@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -84,7 +85,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         viewModel.isLoading.observe(this) { isLoading ->
-
+            if (isLoading) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
         }
 
         viewModel.locations.observe(this) { locations ->
