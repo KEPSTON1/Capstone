@@ -55,4 +55,15 @@
     <string name="mindcare_news">MindCare News</string>
     <string name="news">News</string>
     <string name="email">Email</string>
+    <string name="pertanyaan_kuis_akan_ditampilkan_di_sini">Pertanyaan kuis akan ditampilkan di sini</string>
+    <string name="pilihan_jawaban_1">Pilihan jawaban 1</string>
+    <string name="pilihan_jawaban_2">Pilihan jawaban 2</string>
+    <string name="pilihan_jawaban_3">Pilihan jawaban 3</string>
+    <string name="pilihan_jawaban_4">Pilihan jawaban 4</string>
+    <string name="con">Continue</string>
+    <string name="hasil_tes_anda_menandakan_depresi_sedang">Hasil tes anda menandakan depresi sedang</string>
+    <string name="kamu_masih_menjalani_kegiatan_sehari_hari_namun_dengan_bersusah_payah_mungkin_kamu_merasa_lelah_secara_fisik_dan_emosional_pada_akhir_hari_dapatkan_bantuan_ahli_untuk_memahami_pikiran_perasaan_dan_gejala_yang_kamu_alami">Kamu masih menjalani kegiatan sehari-hari, namun dengan bersusah payah. Mungkin, kamu merasa lelah secara fisik dan emosional pada akhir hari. Dapatkan bantuan ahli untuk memahami pikiran, perasaan, dan gejala yang kamu alami.</string>
+    <string name="hasil">Hasil</string>
+
+
 </resources>

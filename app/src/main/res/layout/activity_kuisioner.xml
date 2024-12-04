@@ -27,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:textColor="@color/ink01"
-        android:text="Pertanyaan kuis akan ditampilkan di sini"
+        android:text="@string/pertanyaan_kuis_akan_ditampilkan_di_sini"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="4dp"
-            android:text="Pilihan jawaban 1"
+            android:text="@string/pilihan_jawaban_1"
             android:textColor="@color/black"
             app:strokeColor="@color/black" />
 
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="4dp"
-            android:text="Pilihan jawaban 2"
+            android:text="@string/pilihan_jawaban_2"
             android:textColor="@color/black"
             app:strokeColor="@color/black" />
 
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="4dp"
-            android:text="Pilihan jawaban 3"
+            android:text="@string/pilihan_jawaban_3"
             android:textColor="@color/black"
             app:strokeColor="@color/black" />
 
@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="4dp"
-            android:text="Pilihan jawaban 4"
+            android:text="@string/pilihan_jawaban_4"
             android:textColor="@color/black"
             app:strokeColor="@color/black" />
 
@@ -94,7 +94,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Continue"
+        android:text="@string/con"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
