@@ -46,8 +46,8 @@ class RegisterActivity : AppCompatActivity() {
             val lastName = binding.edRegisterLastName.text.toString()
             val password = binding.edRegisterPassword.text.toString()
             val phone = binding.edRegisterPhone.text.toString()
-            val gender = binding.edRegisterGender.text.toString() // Ubah cara mengambil gender sesuai dengan UI Anda
-            val age = binding.edRegisterAge.text.toString().toIntOrNull() ?: 0 // Ubah cara mengambil age sesuai dengan UI Anda
+            val gender = binding.edRegisterGender.text.toString()
+            val age = binding.edRegisterAge.text.toString().toIntOrNull() ?: 0
 
             viewModel.register(email, firstName, lastName, password, phone, gender, age)
         }

@@ -3,8 +3,11 @@ package com.example.capstone.api
 import com.example.capstone.api.response.GetArticlesResponse
 import com.example.capstone.api.response.GetProfileResponse
 import com.example.capstone.api.response.LoginResponse
+import com.example.capstone.api.response.PredictionResponse
 import com.example.capstone.api.response.RegisterResponse
 import com.example.capstone.api.response.StoreResponse
+import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -44,4 +47,9 @@ interface ApiService {
         @Query("longitude") longitude: Double,
         @Query("keyword") keyword: String
     ): StoreResponse
+}
+
+interface MlApiService {
+    @POST("predict")
+    fun predict(@Body requestBody: Map<String, Int>): Call<PredictionResponse>
 }

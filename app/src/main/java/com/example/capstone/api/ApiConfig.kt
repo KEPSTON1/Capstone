@@ -30,4 +30,25 @@ object ApiConfig {
             .build()
         return retrofit.create(ApiService::class.java)
     }
+
+    fun getMlApiService(token: String): MlApiService {
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val authInterceptor = Interceptor { chain ->
+            val req = chain.request()
+            val requestHeaders = req.newBuilder()
+                .addHeader("Authorization", "Bearer $token")
+                .build()
+            chain.proceed(requestHeaders)
+        }
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(authInterceptor)
+            .build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://ml-backend-790176761963.asia-southeast2.run.app/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        return retrofit.create(MlApiService::class.java)
+    }
 }

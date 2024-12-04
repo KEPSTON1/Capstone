@@ -8,6 +8,7 @@ import com.example.capstone.ui.login.LoginViewModel
 import com.example.capstone.ui.maps.MapsViewModel
 import com.example.capstone.ui.profile.ProfileViewModel
 import com.example.capstone.ui.register.RegisterViewModel
+import com.example.capstone.ui.result.ResultViewModel
 
 class LoginViewModelFactory(private val userRepository: UserRepository) :
     ViewModelProvider.Factory {
@@ -58,6 +59,16 @@ class MapsViewModelFactory(private val repository: UserRepository) : ViewModelPr
         if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return MapsViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+
+class ResultViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(ResultViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return ResultViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
