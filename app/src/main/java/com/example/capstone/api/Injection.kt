@@ -9,6 +9,7 @@ object Injection {
         val userPreferences = UserPreferences(context)
         val token = userPreferences.getSession().token
         val apiService = ApiConfig.getApiService(token)
-        return UserRepository(apiService, userPreferences)
+        val mlApiService = ApiConfig.getMlApiService(token)
+        return UserRepository(apiService, mlApiService, userPreferences)
     }
 }

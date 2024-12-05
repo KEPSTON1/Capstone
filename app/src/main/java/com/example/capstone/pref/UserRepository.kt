@@ -1,7 +1,10 @@
 package com.example.capstone.pref
 
 import com.example.capstone.api.ApiService
+import com.example.capstone.api.MlApiService
+import com.example.capstone.api.response.DeleteHistoryResponse
 import com.example.capstone.api.response.GetArticlesResponse
+import com.example.capstone.api.response.GetHistoryResponse
 import com.example.capstone.api.response.GetProfileResponse
 import com.example.capstone.api.response.LocationResponse
 import com.example.capstone.api.response.LoginResponse
@@ -9,6 +12,7 @@ import com.example.capstone.api.response.RegisterResponse
 
 class UserRepository(
     private val apiService: ApiService,
+    private val mlApiService: MlApiService,
     private val userPreferences: UserPreferences,
 ) {
 
@@ -39,5 +43,13 @@ class UserRepository(
     suspend fun getNearbyLocations(latitude: Double, longitude: Double, keyword: String): List<LocationResponse> {
         val response = apiService.getNearbyLocations(latitude, longitude, keyword)
         return response.toko
+    }
+
+    suspend fun getHistory(token: String): GetHistoryResponse {
+        return mlApiService.getHistory()
+    }
+
+    suspend fun deleteHistory(id: Int, token: String): DeleteHistoryResponse {
+        return mlApiService.deleteHistory(id)
     }
 }

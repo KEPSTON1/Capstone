@@ -65,5 +65,7 @@
     <string name="kamu_masih_menjalani_kegiatan_sehari_hari_namun_dengan_bersusah_payah_mungkin_kamu_merasa_lelah_secara_fisik_dan_emosional_pada_akhir_hari_dapatkan_bantuan_ahli_untuk_memahami_pikiran_perasaan_dan_gejala_yang_kamu_alami">Kamu masih menjalani kegiatan sehari-hari, namun dengan bersusah payah. Mungkin, kamu merasa lelah secara fisik dan emosional pada akhir hari. Dapatkan bantuan ahli untuk memahami pikiran, perasaan, dan gejala yang kamu alami.</string>
     <string name="hasil">Hasil</string>
 
-
+    <string name="depression_category">Kategori Depresi: %s</string>
+    <string name="anxiety_category">Kategori Kecemasan: %s</string>
+    <string name="stress_category">Kategori Stres: %s</string>
 </resources>
