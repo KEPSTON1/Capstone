@@ -31,20 +31,20 @@ class HistoryActivity : AppCompatActivity() {
 
         val userPreferences = UserPreferences(this)
         val userSession = userPreferences.getSession()
-        historyViewModel.setToken(userSession.token) // Simpan token di HistoryViewModel
+        historyViewModel.setToken(userSession.token)
 
         setupRecyclerView()
         getHistoryData()
     }
 
     private fun setupRecyclerView() {
-        historyAdapter = HistoryAdapter(historyViewModel) // Inisialisasi dengan HistoryViewModel
+        historyAdapter = HistoryAdapter(historyViewModel)
         binding.rvHistory.layoutManager = LinearLayoutManager(this)
         binding.rvHistory.adapter = historyAdapter
     }
 
     private fun getHistoryData() {
-        historyViewModel.getHistory() // Panggil getHistory tanpa parameter token
+        historyViewModel.getHistory()
 
         binding.progressBar.visibility = View.VISIBLE
 

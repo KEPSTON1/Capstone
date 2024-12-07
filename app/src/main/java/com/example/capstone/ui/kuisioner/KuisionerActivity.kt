@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstone.databinding.ActivityKuisionerBinding
 import com.example.capstone.ui.result.ResultActivity
@@ -55,8 +56,7 @@ class KuisionerActivity : AppCompatActivity() {
         "Mudah gelisah",
         "Khawatir dengan situasi saat diri Anda mungkin menjadi panik dan mempermalukan diri sendiri",
         "Gemetar",
-        "Sulit untuk meningkatkan inisiatif dalam melakukan sesuatu",
-        "Apakah anda sudah yakin dengan seluruh pertanyaan anda"
+        "Sulit untuk meningkatkan inisiatif dalam melakukan sesuatu"
     )
     private var currentQuestionIndex = 0
     private val answers = mutableMapOf<String, Int>()
@@ -116,6 +116,7 @@ class KuisionerActivity : AppCompatActivity() {
 
         displayQuestion()
         supportActionBar?.hide()
+        showIntroDialog()
     }
 
     private fun displayQuestion() {
@@ -131,5 +132,31 @@ class KuisionerActivity : AppCompatActivity() {
             button.setBackgroundColor(Color.TRANSPARENT)
             button.setTextColor(Color.BLACK)
         }
+    }
+
+    private fun showIntroDialog() {
+        val introMessage = """
+            Kuisioner ini dirancang untuk membantu memahami kondisi kesehatan mental Anda dan memberikan rekomendasi yang sesuai dengan kebutuhan Anda.
+ 
+            Sebelum memulai, berikut adalah keterangan untuk setiap angka yang akan digunakan dalam menjawab:
+ 
+            0: Tidak ada atau tidak pernah
+            1: Sesuai dengan yang dialami sampai tingkat tertentu, atau kadang-kadang
+            2: Sering
+            3: Sangat sesuai dengan yang dialami, atau hampir setiap saat
+            
+            Silakan menjawab dengan jujur sesuai dengan kondisi yang Anda alami. Jawaban Anda akan dijaga kerahasiaannya dan digunakan hanya untuk tujuan yang telah dijelaskan.
+ 
+            Mari kita mulai!
+        """.trimIndent()
+
+        AlertDialog.Builder(this)
+            .setTitle("Kata Pengantar")
+            .setMessage(introMessage)
+            .setPositiveButton("Mulai") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(false)
+            .show()
     }
 }

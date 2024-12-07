@@ -19,10 +19,10 @@ class HistoryViewModel(private val repository: UserRepository) : ViewModel() {
         this.token = token
     }
 
-    fun getHistory() {  // Hapus parameter token
+    fun getHistory() {
         viewModelScope.launch {
             try {
-                val response = repository.getHistory(token) // Gunakan token yang disimpan
+                val response = repository.getHistory(token)
                 _history.value = response.history
             } catch (e: Exception) {
                 // Tangani error
@@ -30,11 +30,10 @@ class HistoryViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun deleteHistory(id: Int) {  // Hapus parameter token
+    fun deleteHistory(id: Int) {
         viewModelScope.launch {
             try {
-                repository.deleteHistory(id, token) // Gunakan token yang disimpan
-                // Perbarui data history di LiveData
+                repository.deleteHistory(id, token)
                 val currentHistory = _history.value.orEmpty().toMutableList()
                 currentHistory.removeIf { it.id == id }
                 _history.value = currentHistory

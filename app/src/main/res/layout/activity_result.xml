@@ -37,7 +37,7 @@
                 android:gravity="center"
                 android:text="@string/hasil"
                 android:textColor="@color/ink01"
-                android:textSize="32sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
                 android:gravity="center"
                 android:text="@string/deskripsi"
                 android:textColor="@color/ink04"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/result_text" />

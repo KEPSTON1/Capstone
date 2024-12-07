@@ -1,14 +1,11 @@
 package com.example.capstone.ui.article
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.capstone.R
 import com.example.capstone.api.response.Article
+import com.example.capstone.databinding.ItemArticleBinding
 
 class ArticleAdapter(private val articles: List<Article>) :
     RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
@@ -19,11 +16,7 @@ class ArticleAdapter(private val articles: List<Article>) :
         this.onItemClickCallback = onItemClickCallback
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivArticleImage: ImageView = itemView.findViewById(R.id.iv_article_image)
-        val tvArticleTitle: TextView = itemView.findViewById(R.id.tv_article_title)
-        val tvArticleDescription: TextView = itemView.findViewById(R.id.tv_article_description)
-
+    class ViewHolder(val binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             itemView.setOnClickListener {
             }
@@ -31,8 +24,8 @@ class ArticleAdapter(private val articles: List<Article>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_article, parent, false)
-        return ViewHolder(view)
+        val binding = ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -40,10 +33,10 @@ class ArticleAdapter(private val articles: List<Article>) :
 
         Glide.with(holder.itemView.context)
             .load(article.urlToImage)
-            .into(holder.ivArticleImage)
+            .into(holder.binding.ivArticleImage)
 
-        holder.tvArticleTitle.text = article.title
-        holder.tvArticleDescription.text = article.description
+        holder.binding.tvArticleTitle.text = article.title
+        holder.binding.tvArticleDescription.text = article.description
 
         holder.itemView.setOnClickListener {
             onItemClickCallback?.onItemClicked(article)

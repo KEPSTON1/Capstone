@@ -38,9 +38,9 @@ class ResultActivity : AppCompatActivity() {
                 try {
                     val predictionResponse = viewModel.getPrediction(userSession.token, answers)
 
-                    binding.resultText.text = "Hasil Tes Anda Menandakan\nKategori Depresi:\n${predictionResponse.Kategori_Depresi}\n" +
-                            "Kategori Kecemasan:\n${predictionResponse.Kategori_Kecemasan}\n" +
-                            "Kategori Stres:\n${predictionResponse.Kategori_Stres}"
+                    binding.resultText.text = "Hasil Tes Anda Menandakan\nKategori Depresi: ${predictionResponse.Kategori_Depresi}\n" +
+                            "Kategori Kecemasan: ${predictionResponse.Kategori_Kecemasan}\n" +
+                            "Kategori Stres: ${predictionResponse.Kategori_Stres}"
 
                     binding.descriptionText.text = getDepressionDescription(predictionResponse.Kategori_Depresi) + "\n\n" +
                             getAnxietyDescription(predictionResponse.Kategori_Kecemasan) + "\n\n" +
