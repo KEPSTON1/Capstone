@@ -1,5 +1,6 @@
 package com.example.capstone.ui.profile
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,7 +27,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -73,6 +74,25 @@ class ProfileFragment : Fragment() {
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
 
         }
+
+        binding.editProfileButton.setOnClickListener {
+            val intent = Intent(requireActivity(), EditProfileActivity::class.java)
+            startActivityForResult(intent, EDIT_PROFILE_REQUEST_CODE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == EDIT_PROFILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // Refresh data profile di fragment
+            val userPreferences = UserPreferences(requireContext())
+            val userSession = userPreferences.getSession()
+            viewModel.getProfile(userSession.token)
+        }
+    }
+
+    companion object {
+        private const val EDIT_PROFILE_REQUEST_CODE = 1001
     }
 
     override fun onDestroyView() {

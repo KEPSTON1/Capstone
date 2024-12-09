@@ -7,6 +7,7 @@ import com.example.capstone.ui.article.ArticleViewModel
 import com.example.capstone.ui.history.HistoryViewModel
 import com.example.capstone.ui.login.LoginViewModel
 import com.example.capstone.ui.maps.MapsViewModel
+import com.example.capstone.ui.profile.EditProfileViewModel
 import com.example.capstone.ui.profile.ProfileViewModel
 import com.example.capstone.ui.register.RegisterViewModel
 import com.example.capstone.ui.result.ResultViewModel
@@ -80,6 +81,18 @@ class HistoryViewModelFactory(private val repository: UserRepository) : ViewMode
         if (modelClass.isAssignableFrom(HistoryViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return HistoryViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+
+class EditProfileViewModelFactory(private val repository: UserRepository) :
+    ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(EditProfileViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return EditProfileViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

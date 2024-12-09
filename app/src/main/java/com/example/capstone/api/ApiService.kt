@@ -1,6 +1,8 @@
 package com.example.capstone.api
 
 import com.example.capstone.api.response.DeleteHistoryResponse
+import com.example.capstone.api.response.EditProfileRequest
+import com.example.capstone.api.response.EditProfileResponse
 import com.example.capstone.api.response.GetArticlesResponse
 import com.example.capstone.api.response.GetHistoryResponse
 import com.example.capstone.api.response.GetProfileResponse
@@ -15,6 +17,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -51,6 +54,11 @@ interface ApiService {
         @Query("longitude") longitude: Double,
         @Query("keyword") keyword: String
     ): StoreResponse
+
+    @PUT("profile/edit")
+    fun updateProfile(
+        @Body requestBody: EditProfileRequest
+    ) : Call<EditProfileResponse>
 }
 
 interface MlApiService {

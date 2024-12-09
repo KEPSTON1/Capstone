@@ -3,12 +3,15 @@ package com.example.capstone.pref
 import com.example.capstone.api.ApiService
 import com.example.capstone.api.MlApiService
 import com.example.capstone.api.response.DeleteHistoryResponse
+import com.example.capstone.api.response.EditProfileRequest
+import com.example.capstone.api.response.EditProfileResponse
 import com.example.capstone.api.response.GetArticlesResponse
 import com.example.capstone.api.response.GetHistoryResponse
 import com.example.capstone.api.response.GetProfileResponse
 import com.example.capstone.api.response.LocationResponse
 import com.example.capstone.api.response.LoginResponse
 import com.example.capstone.api.response.RegisterResponse
+import retrofit2.Call
 
 class UserRepository(
     private val apiService: ApiService,
@@ -43,6 +46,10 @@ class UserRepository(
     suspend fun getNearbyLocations(latitude: Double, longitude: Double, keyword: String): List<LocationResponse> {
         val response = apiService.getNearbyLocations(latitude, longitude, keyword)
         return response.toko
+    }
+
+    fun updateProfile(token: String, requestBody: EditProfileRequest): Call<EditProfileResponse> {
+        return apiService.updateProfile(requestBody)
     }
 
     suspend fun getHistory(token: String): GetHistoryResponse {
